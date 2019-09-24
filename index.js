@@ -14,6 +14,10 @@ const posts = require("./route/api/posts");
 
 app.use("/api/posts", posts);
 
+app.get("/", (req, res) => {
+  res.send("Hello my lovely Heejin");
+});
+
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
