@@ -32,7 +32,7 @@ async function loadPostsCollection() {
       useNewUrlParser: true
     }
   );
-  const uri = "mongodb+srv://heejin-admin:<password>@heejin-closet-1-bjxbc.mongodb.net/test?retryWrites=true&w=majority";
+  const uri = "mongodb+srv://heejin-admin:kobiet26501234@heejin-closet-1-bjxbc.mongodb.net/test?retryWrites=true&w=majority";
   const clientProd = await mongodb.MongoClient.connect(uri, { useNewUrlParser: true });
   return process.env.NODE_ENV === "development" ? client.db("heejin_closet").collection("posts") : clientProd.db("test").collection("devices");
 }
