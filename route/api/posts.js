@@ -26,15 +26,17 @@ router.delete("/:id", async (req, res) => {
 });
 
 async function loadPostsCollection() {
+  console.log("env : ",process.env.NODE_ENV);
   const clientDev = await mongodb.MongoClient.connect(
     "mongodb://localhost:27017",
     {
       useNewUrlParser: true
     }
   );
-  const uri = "mongodb+srv://heejin-admin:kobiet26501234@heejin-closet-1-bjxbc.mongodb.net/test?retryWrites=true&w=majority";
+  const uri = "mongodb://heejin-admin:kobiet26501234@heejin-closet-1-bjxbc.mongodb.net/test?retryWrites=true&w=majority";
   const clientProd = await mongodb.MongoClient.connect(uri, { useNewUrlParser: true });
-  return process.env.NODE_ENV === "development" ? client.db("heejin_closet").collection("posts") : clientProd.db("test").collection("devices");
+  
+  return process.env.NODE_ENV === "development" ? clientDev.db("heejin_closet").collection("posts") : clientProd.db("test").collection("devices");
 }
 
 module.exports = router;
