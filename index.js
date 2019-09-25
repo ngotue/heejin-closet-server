@@ -15,7 +15,7 @@ const posts = require("./route/api/posts");
 app.use("/api/posts", posts);
 
 app.get("/", (req, res) => {
-  res.send("Hello my lovely Heejin");
+  res.send("This is endpoint api for heejin-closet");
 });
 
 app.listen(port, () => {

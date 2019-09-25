@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const posts = await loadPostsCollection();
-  res.send(await posts.find({}).toArray());
+  res.send("I love you Heejin");
+  // res.send(await posts.find({}).toArray());
 });
 
 router.post("/", async (req, res) => {
