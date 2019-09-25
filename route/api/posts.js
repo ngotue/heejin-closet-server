@@ -4,7 +4,7 @@ const mongodb = require("mongodb");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const posts = await loadPostsCollection();
+  // const posts = await loadPostsCollection();
   res.send("I love you Heejin");
   // res.send(await posts.find({}).toArray());
 });
