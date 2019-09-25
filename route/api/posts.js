@@ -4,9 +4,8 @@ const mongodb = require("mongodb");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  // const posts = await loadPostsCollection();
-  res.send("I love you Heejin");
-  // res.send(await posts.find({}).toArray());
+  const posts = await loadPostsCollection();
+  res.send(await posts.find({}).toArray());
 });
 
 router.post("/", async (req, res) => {
@@ -27,14 +26,15 @@ router.delete("/:id", async (req, res) => {
 });
 
 async function loadPostsCollection() {
-  const client = await mongodb.MongoClient.connect(
+  const clientDev = await mongodb.MongoClient.connect(
     "mongodb://localhost:27017",
     {
       useNewUrlParser: true
     }
   );
-
-  return client.db("heejin_closet").collection("posts");
+  const uri = "mongodb+srv://heejin-admin:<password>@heejin-closet-1-bjxbc.mongodb.net/test?retryWrites=true&w=majority";
+  const clientProd = await mongodb.MongoClient.connect(uri, { useNewUrlParser: true });
+  return process.env.NODE_ENV === "development" ? client.db("heejin_closet").collection("posts") : clientProd.db("test").collection("devices");
 }
 
 module.exports = router;
